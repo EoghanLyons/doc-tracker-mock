@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Documentation Tracker — Dark Mock</title>
+<style>
+  :root {
+    --bg: #0f172a;        /* slate-900 */
+    --card: #0b1324;      /* darker slate */
+    --muted: #94a3b8;     /* slate-400 */
+    --text: #e2e8f0;      /* slate-200 */
+    --border: #1f2937;    /* slate-800 */
+    --green: #059669;
+    --amber: #d97706;
+    --red: #dc2626;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    background: var(--bg);
+    color: var(--text);
+  }
+  .container { max-width: 1120px; margin: 0 auto; padding: 24px 16px; }
+  .header { position: sticky; top: 0; z-index: 10; background: rgba(15,23,42,0.85); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .header-inner { max-width: 1120px; margin: 0 auto; padding: 16px; display: flex; align-items: center; justify-content: space-between; }
+  .title { font-size: 22px; font-weight: 700; }
+  .badge { font-size: 12px; color: var(--muted); }
+  .controls { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; padding: 0 16px 16px; max-width: 1120px; margin: 0 auto; }
+  .control { background: #111827; border: 1px solid var(--border); border-radius: 16px; padding: 12px; }
+  .control .label { text-transform: uppercase; letter-spacing: .05em; font-size: 11px; color: var(--muted); }
+  .control .value { margin-top: 4px; font-weight: 600; }
+  .grid { display: grid; gap: 16px; }
+  .grid-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .card { background: #0b1324; border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+  .muted { color: var(--muted); }
+  .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .kpi-value { margin-top: 8px; font-size: 24px; font-weight: 700; }
+  .section-title { font-size: 18px; font-weight: 700; margin: 0 0 8px; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { padding: 8px; }
+  thead th { text-align: left; color: #cbd5e1; }
+  tbody tr { border-top: 1px solid rgba(255,255,255,0.06); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+  .pill.green { background: rgba(5,150,105,.2); color: #a7f3d0; }
+  .pill.amber { background: rgba(217,119,6,.2); color: #fde68a; }
+  .pill.red { background: rgba(220,38,38,.2); color: #fecaca; }
+  .swatch { position: relative; height: 32px; border-radius: 8px; border: 1px solid var(--border); }
+  .swatch.green { background: rgba(5,150,105,.6); }
+  .swatch.amber { background: rgba(217,119,6,.6); }
+  .swatch.red { background: rgba(220,38,38,.6); }
+  .dot { position: absolute; right: -4px; top: -4px; width: 10px; height: 10px; border-radius: 50%; background: #34d399; border: 2px solid #0b1324; }
+  .bar { height: 8px; width: 100%; background: #1f2937; border-radius: 999px; overflow: hidden; }
+  .bar > div { height: 8px; background: #e5e7eb; border-radius: 999px; }
+  .cols-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .exceptions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 900px) {
+    .controls { grid-template-columns: 1fr 1fr; }
+    .grid-6 { grid-template-columns: 1fr 1fr; }
+    .cols-3, .exceptions { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-inner">
+      <div class="title">Documentation Tracker — Compliance & Recency</div>
+      <div class="badge">Last refresh: 10:24 • Rows: 4,218</div>
+    </div>
+    <div class="controls">
+      <div class="control"><div class="label">Year</div><div class="value">2025</div></div>
+      <div class="control"><div class="label">Quarter</div><div class="value">Q2</div></div>
+      <div class="control"><div class="label">Supplier</div><div class="value">All</div></div>
+      <div class="control"><div class="label">KPI</div><div class="value">All (3)</div></div>
+      <div class="control"><div class="label">View</div><div class="value">Last 4 Quarters</div></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- KPI cards -->
+    <section class="grid grid-6">
+      <div class="card"><div class="kpi-label">Suppliers Tracked</div><div class="kpi-value">87</div></div>
+      <div class="card"><div class="kpi-label">Suppliers Completed (Q2)</div><div class="kpi-value">51</div></div>
+      <div class="card"><div class="kpi-label">Completion Rate</div><div class="kpi-value">58%</div></div>
+      <div class="card"><div class="kpi-label">Δ vs Prior Q</div><div class="kpi-value">+6%</div></div>
+      <div class="card"><div class="kpi-label">Median Streak</div><div class="kpi-value">3 Qtrs</div></div>
+      <div class="card"><div class="kpi-label">Mode of Latest Completed</div><div class="kpi-value">2025 Q2</div></div>
+    </section>
+
+    <!-- Heatmap -->
+    <section>
+      <div class="section-title">Quarterly Completion Heatmap</div>
+      <div class="muted">Green = 3/3 KPIs • Amber = 2/3 • Red = 0–1/3</div>
+      <div class="card" style="margin-top:12px;">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Supplier</th>
+                <th>2024 Q3</th><th>2024 Q4</th><th>2025 Q1</th><th>2025 Q2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ayvens</td>
+                <td><div class="swatch green"></div></td>
+                <td><div class="swatch green"></div></td>
+                <td><div class="swatch green"></div></td>
+                <td><div class="swatch green"><span class="dot"></span></div></td>
+              </tr>
+              <tr>
+                <td>Brinks</td>
+                <td><div class="swatch amber"></div></td>
+                <td><div class="swatch green"></div></td>
+                <td><div class="swatch amber"></div></td>
+                <td><div class="swatch green"><span class="dot"></span></div></td>
+              </tr>
+              <tr>
+                <td>LMC</td>
+                <td><div class="swatch red"></div></td>
+                <td><div class="swatch amber"></div></td>
+                <td><div class="swatch amber"></div></td>
+                <td><div class="swatch green"><span class="dot"></span></div></td>
+              </tr>
+              <tr>
+                <td>Holden</td>
+                <td><div class="swatch green"></div></td>
+                <td><div class="swatch green"></div></td>
+                <td><div class="swatch amber"></div></td>
+                <td><div class="swatch amber"></div></td>
+              </tr>
+              <tr>
+                <td>DAF</td>
+                <td><div class="swatch red"></div></td>
+                <td><div class="swatch red"></div></td>
+                <td><div class="swatch amber"></div></td>
+                <td><div class="swatch amber"></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPI Status -->
+    <section style="margin-top:24px;">
+      <div class="section-title">KPI Status — Selected Quarter (Q2)</div>
+      <div class="cols-3">
+        <div class="card">
+          <div style="font-weight:600;margin-bottom:8px;">Performance Pack</div>
+          <div class="muted" style="display:flex;justify-content:space-between;margin:6px 0;"><span>Received</span><span>41</span></div>
+          <div class="bar"><div style="width:82%"></div></div>
+          <div class="muted" style="display:flex;justify-content:space-between;margin:10px 0 6px;"><span>Requested</span><span>28</span></div>
+          <div class="bar"><div style="width:56%"></div></div>
+          <div class="muted" style="display:flex;justify-content:space-between;margin:10px 0 6px;"><span>Currently Not In Place</span><span>18</span></div>
+          <div class="bar"><div style="width:36%"></div></div>
+        </div>
+        <div class="card">
+          <div style="font-weight:600;margin-bottom:8px;">Review Meetings (Agendas/Minutes)</div>
+          <div class="muted" style="display:flex;justify-content:space-between;margin:6px 0;"><span>Received</span><span>39</span></div>
+          <div class="bar"><div style="width:78%"></div></div>
+          <div class="muted" style="display:flex;justify-content:space-between;margin:10px 0 6px;"><span>Requested</span><span>30</span></div>
+          <div class="bar"><div style="width:60%"></div></div>
+          <div class="muted" style="display:flex;justify-content:space-between;margin:10px 0 6px;"><span>Currently Not Being Held</span><span>18</span></div>
+          <div class="bar"><div style="width:36%"></div></div>
+        </div>
+        <div class="card">
+          <div style="font-weight:600;margin-bottom:8px;">SRM Review</div>
+          <div class="muted" style="display:flex;justify-content:space-between;margin:6px 0;"><span>Completed</span><span>35</span></div>
+          <div class="bar"><div style="width:70%"></div></div>
+          <div class="muted" style="display:flex;justify-content:space-between;margin:10px 0 6px;"><span>Not Completed</span><span>32</span></div>
+          <div class="bar"><div style="width:64%"></div></div>
+          <div class="muted" style="display:flex;justify-content:space-between;margin:10px 0 6px;"><span>Incomplete</span><span>20</span></div>
+          <div class="bar"><div style="width:40%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leaderboard -->
+    <section style="margin-top:24px;">
+      <div class="section-title">Supplier Leaderboard</div>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Supplier</th>
+                <th>Current Quarter</th>
+                <th>Most Recent Completed</th>
+                <th>Streak</th>
+                <th>Requested (Q2)</th>
+                <th>Overdue Quarters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Ayvens</td><td><span class="pill green">Complete</span></td><td>2025 Q2</td><td>4</td><td>0</td><td>0</td></tr>
+              <tr><td>Brinks</td><td><span class="pill green">Complete</span></td><td>2025 Q2</td><td>3</td><td>0</td><td>0</td></tr>
+              <tr><td>LMC</td><td><span class="pill amber">2 of 3</span></td><td>2025 Q2</td><td>2</td><td>2</td><td>0</td></tr>
+              <tr><td>Holden</td><td><span class="pill amber">2 of 3</span></td><td>2025 Q1</td><td>1</td><td>2</td><td>1</td></tr>
+              <tr><td>DAF</td><td><span class="pill red">0–1 of 3</span></td><td>2024 Q4</td><td>0</td><td>3</td><td>2</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trend placeholder -->
+    <section style="margin-top:24px;">
+      <div class="section-title">Completion Rate Trend</div>
+      <div class="card" style="text-align:center; padding:48px; color:#94a3b8;">(Line chart placeholder — Completion Rate % by Quarter)</div>
+    </section>
+
+    <!-- Exceptions -->
+    <section style="margin-top:24px;">
+      <div class="section-title">Data Quality & Exceptions</div>
+      <div class="exceptions">
+        <div class="card"><div class="muted">Missing KPI rows this quarter</div><div class="kpi-value">4 suppliers</div></div>
+        <div class="card"><div class="muted">Unexpected result labels</div><div class="kpi-value">2 records</div></div>
+        <div class="card"><div class="muted">Ambiguous quarter values</div><div class="kpi-value">1 entry</div></div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
